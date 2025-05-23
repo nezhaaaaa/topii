@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ezando Cap - Topi Branded Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: auto;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      animation: slideDown 1s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #f1c40f;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      padding: 40px;
+      animation: fadeIn 1.5s ease-in-out;
+      overflow-x: auto;
+    }
+
+    .card {
+      min-width: 300px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      flex-shrink: 0;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card .content {
+      padding: 20px;
+    }
+
+    .card .content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .card .content p {
+      font-size: 1rem;
+      color: #f0f0f0;
+    }
+
+    .card .content .harga {
+      font-weight: bold;
+      color: #f1c40f;
+      margin: 10px 0;
+    }
+
+    .btn-view {
+      margin: 5px 5px 0 0;
+      padding: 8px 14px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-view:hover {
+      background-color: #1c5981;
+    }
+
+    .modal,
+    .image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content,
+    .image-modal-content {
+      background: #1f2a40;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      color: #fff;
+    }
+
+    .image-modal-content img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+    }
+
+    .modal-content h3 {
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      font-size: 14px;
+      margin: 10px 0;
+      white-space: pre-line;
+    }
+
+    .modal-content button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: #27ae60;
+      color: white;
+    }
+
+    .btn-secondary {
+      background-color: #c0392b;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ezando Cap - Topi Branded Premium</h1>
+    <nav>
+      <a href="beranda.html">Beranda</a>
+      <a href="produk.html">Produk</a>
+      <a href="tentang.html">Tentang Kami</a>
+      <a href="kontak.html">Kontak</a>
+    </nav>
+  </header>
+
+  <main class="container" id="product-container"></main>
+
+  <div id="popup" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3 id="popup-title"></h3>
+      <p id="popup-desc"></p>
+      <p id="popup-price"></p>
+      <p>Untuk melanjutkan pesanan, silakan klik tombol WhatsApp di bawah ini.</p>
+      <button class="btn-primary" id="btn-wa">WhatsApp</button>
+      <button class="btn-secondary" onclick="closePopup()">Batalkan</button>
+    </div>
+  </div>
+
+  <div id="imgModal" class="image-modal" style="display:none;" onclick="closeImageModal()">
+    <div class="image-modal-content" onclick="event.stopPropagation()">
+      <img id="modal-img" src="" alt="" />
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Ezando Cap - Toko Topi Branded Premium</p>
+  </footer>
+
+  <script>
+    const productList = [
+      {
+        name: 'Gucci GG Baseball Cap',
+        desc: 'Topi baseball mewah dengan motif GG klasik Gucci.\n\n- Warna: Hitam,Merah & Hijau\n- Logo bordir\n- Adjustable strap',
+        price: 'Rp 3.200.000',
+        img: 'gambar1.jpg'
+      },
+      {
+        name: 'New Era 59FIFTY',
+        desc: 'Topi fitted New Era dengan logo MLB.\n\n- Warna: Putih\n- Size custom\n- Material wool berkualitas',
+        price: 'Rp 1.200.000',
+        img: 'gambar2.jpg'
+      },
+      {
+        name: 'Nike Sports Cap',
+        desc: 'Topi olahraga Nike dengan teknologi dri-fit.\n\n- Warna: Putih\n- Adjustable strap\n- Ringan dan breathable',
+        price: 'Rp 350.000',
+        img: 'gambar3.jpg'
+      },
+      {
+        name: 'Adidas Originals Snapback',
+        desc: 'Topi snapback Adidas dengan logo tiga garis.\n\n- Warna: Navy\n- Adjustable snapback\n- Bahan polyester premium',
+        price: 'Rp 450.000',
+        img: 'gambar5.jpg'
+      },
+      {
+        name: 'Prada Technical Fabric Cap',
+        desc: 'Topi Prada dengan bahan technical fabric modern.\n\n- Warna: Hitam\n- Logo metalik\n- Desain minimalis dan elegan',
+        price: 'Rp 4.800.000',
+        img: 'gambar6.jpg'
+      },
+      {
+        name: 'Balenciaga Logo Cap',
+        desc: 'Topi dengan logo Balenciaga bordir besar.\n\n- Warna: Abu-abu\n- Adjustable strap\n- Desain oversized',
+        price: 'Rp 5.500.000',
+        img: 'gambar7.jpg'
+      },
+      {
+        name: 'LV Vers Mesh Cap',
+        desc: 'LV Vers mesh cap ini memadukan gaya klasik dan modern,.\n\n- Warna: Hitam Putih\n- berbahan mesh dengan bordir Monogram di seluruh permukaannya\n- 100% Katun',
+        price: 'Rp 12.000.000',
+        img: 'gambar8.jpg'
+      },
+       {
+        name: 'DIOR',
+        desc: ' Motif Fulll Corak\n- berbahan mesh dengan bordir Monogram di seluruh permukaannya\n- 100% Katun',
+        price: 'Rp 9.000.000',
+        img: 'gambar9.jpg'
+      },
+        {
+        name: 'New Balance 6 Panel',
+        desc: 'Performance Hat Unisex Caps - Blackh\n- Desain simple\n- 100% Katun',
+        price: 'Rp 500.000',
+        img: 'gambar10.jpg'
+        },
+        {
+             name: 'PRADA',
+        desc: ',.\n\n- Topi dengan model semi klasik \n- berbahan mesh dengan bordir Monogram di seluruh permukaannya\n- 100% Katun',
+        price: 'Rp 9.000.000',
+        img: 'gambar11.jpg'
+      }
+  
+    ];
+
+    const container = document.getElementById('product-container');
+    const popup = document.getElementById('popup');
+    const popupTitle = document.getElementById('popup-title');
+    const popupDesc = document.getElementById('popup-desc');
+    const popupPrice = document.getElementById('popup-price');
+    const btnWa = document.getElementById('btn-wa');
+    const imgModal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modal-img');
+
+    productList.forEach((product, i) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.animation = `fadeIn 1s ease ${i * 0.2}s forwards`;
+      card.style.opacity = 0;
+      card.innerHTML = `
+        <img src="${product.img}" alt="${product.name}" />
+        <div class="content">
+          <h3>${product.name}</h3>
+          <p>${product.desc.split('\n')[0]}</p>
+          <p class="harga">${product.price}</p>
+          <button class="btn-view" onclick="event.stopPropagation(); viewImage('${product.img}', '${product.name}')">Lihat Produk</button>
+          <button class="btn-view" onclick="event.stopPropagation(); confirmPurchase(${i})">Beli Sekarang</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    function confirmPurchase(index) {
+      const product = productList[index];
+      popup.style.display = 'flex';
+      popupTitle.textContent = product.name;
+      popupDesc.textContent = product.desc;
+      popupPrice.textContent = product.price;
+      btnWa.onclick = () => {
+        const url = `https://wa.me/6281515061932?text=Halo,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(product.name)}%20dengan%20harga%20${encodeURIComponent(product.price)}.%20Apakah%20masih%20tersedia?`;
+        window.open(url, '_blank');
+      };
+    }
+
+    function closePopup() {
+      popup.style.display = 'none';
+    }
+
+    function viewImage(img, alt) {
+      modalImg.src = img;
+      modalImg.alt = alt;
+      imgModal.style.display = 'flex';
+    }
+
+    function closeImageModal() {
+      imgModal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
